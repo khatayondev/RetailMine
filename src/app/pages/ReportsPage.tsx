@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { FileText, Image as ImageIcon, FileType, Loader2, Download, Check } from "lucide-react";
-import jsPDF from "jspdf";
+import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { api } from "../lib/api";
 import { useApi } from "../lib/useApi";
