@@ -1,7 +1,8 @@
 
   # Dashboard replica
 
-  This is a code bundle for Dashboard replica. The original project is available at https://www.figma.com/design/KoBhoojGcgt6x8GfCMae7z/Dashboard-replica.
+  This is a code bundle for Dashboard replica. 
+  https://shaky-rating-01668753.figma.site
 
   ## Running the code
 
