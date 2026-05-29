@@ -82,7 +82,7 @@ function Shell() {
               >
                 + Run Preprocessing
               </button>
-              <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv" className="hidden" onChange={onFile} />
+              <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv,.pdf" className="hidden" onChange={onFile} />
               <button
                 onClick={() => fileRef.current?.click()}
                 disabled={status === "uploading"}

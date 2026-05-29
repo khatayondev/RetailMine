@@ -67,8 +67,24 @@ def health():
 
 @app.post("/api/upload")
 async def upload(file: UploadFile = File(...)):
-    with DATASET.open("wb") as f:
-        shutil.copyfileobj(file.file, f)
+    filename = file.filename or ""
+    if filename.lower().endswith(".pdf"):
+        temp_pdf = DATA_DIR / "temp_upload.pdf"
+        with temp_pdf.open("wb") as f:
+            shutil.copyfileobj(file.file, f)
+        
+        try:
+            from utils.pdf_parser import parse_pdf_to_df
+            df = parse_pdf_to_df(temp_pdf)
+            with pd.ExcelWriter(DATASET, engine='openpyxl') as writer:
+                df.to_excel(writer, sheet_name='Year 2009-2010', index=False)
+        finally:
+            if temp_pdf.exists():
+                temp_pdf.unlink()
+    else:
+        with DATASET.open("wb") as f:
+            shutil.copyfileobj(file.file, f)
+            
     STATE["raw"] = None
     STATE["clean"] = None
     return {"ok": True, "path": str(DATASET)}
